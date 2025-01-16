@@ -43,7 +43,7 @@ This project integrates the Twitter API with Ollama to post content generated ba
 ## Setting Up Ollama
 
 1. **Install Ollama**:
-   - Follow the official instructions to install Ollama on your system. Visit [Ollama’s official website](https://ollama.com/) for detailed guidance.
+   - Follow the official instructions to install Ollama on your system. Visit [Ollama’s official website](https://ollama.com/) and (https://github.com/ollama/ollama/blob/main/README.md#quickstart) for detailed guidance.
 
 2. **Configure Ollama**:
    - Ensure Ollama is accessible via your Python environment or command line.
@@ -67,9 +67,9 @@ This project integrates the Twitter API with Ollama to post content generated ba
 3. **Set Environment Variables**:
    - Create a `.env` file in the project root and add the following:
      ```env
-     consumer_key=<your_api_key>
-     consumer_secret=<your_api_secret_key>
-     OLLAMA_API_URL="http://localhost:11434/api/generate" # if applicable
+     TWITTER_API_KEY=<your_api_key>
+     TWITTER_API_SECRET_KEY=<your_api_secret_key>
+     OLLAMA_API_URL="http://localhost:11434/api/generate"# if applicable
      ```
 
 4. **Run the Application**:
@@ -78,3 +78,18 @@ This project integrates the Twitter API with Ollama to post content generated ba
    ```
 
 ---
+
+## Usage
+- Provide user input when prompted.
+- The application will generate content using Ollama and post it to your linked X (Twitter) account.
+
+---
+
+## Additional Resources
+- [Twitter Developer Documentation](https://developer.twitter.com/en/docs)
+- [Ollama Documentation](https://ollama.com/docs)
+- [ollama API Reference Doc](https://github.com/ollama/ollama/blob/main/docs/api.md)
+
+---
+
+Feel free to contribute to this project by submitting issues or pull requests!
