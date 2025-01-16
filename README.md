@@ -49,7 +49,32 @@ This project integrates the Twitter API with Ollama to post content generated ba
    - Ensure Ollama is accessible via your Python environment or command line.
    - Verify the setup by running a test query (e.g., `ollama --test`).
 
-3. **Generate an API Key (if required)**:
-   - Some Ollama setups may require an API key. Refer to the Ollama documentation to generate and securely store the key.
+---
+## Project Setup Instructions
+
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository_url>
+   cd <repository_directory>
+   ```
+
+2. **Install Dependencies**:
+   - Install the required Python packages:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+3. **Set Environment Variables**:
+   - Create a `.env` file in the project root and add the following:
+     ```env
+     consumer_key=<your_api_key>
+     consumer_secret=<your_api_secret_key>
+     OLLAMA_API_URL="http://localhost:11434/api/generate" # if applicable
+     ```
+
+4. **Run the Application**:
+   ```bash
+   python automate.py
+   ```
 
 ---
