@@ -1,13 +1,13 @@
 import requests
 import json
 import os
-
+import random
 from requests_oauthlib import OAuth1Session
 
 # Replace with your Twitter API keys
 
-consumer_key = os.getenv('TWITTER_API_KEY')
-consumer_secret = os.getenv('TWITTER_API_SECRET')
+consumer_key = os.getenv("TWITTER_CONSUMER_KEY")
+consumer_secret = os.getenv("TWITTER_CONSUMER_SECRET")
 #print(consumer_key)
 # Replace with your Ollama API endpoint and API key if required
 OLLAMA_API_URL = 'http://localhost:11434/api/generate'
@@ -23,9 +23,13 @@ def fetch_twitter_content(user_preferences, topic):
 
     # Customize this prompt based on how Ollama handles inputs
     prompt = f"""
-    You are a content creator for Twitter. Generate engaging and concise Twitter posts (within 280 characters) on the topic: "{topic}".
+    You are a content creator for Twitter.
+    Generate engaging and concise Viral Twitter posts (within 280 characters) on the topic: "{topic}".
     Consider the user preferences: {user_preferences}.
-    Create 1 unique tweet about this topic. The response which you give should be in the form of a tweet. With each tweet after a Tweet: write the content of the tweet.
+
+    Create 1 unique tweet about this topic. The response which you give should be in the form of a tweet. 
+    inlcude relevant 4-5 hashtags based on the topic.
+    Do not include " at the starting and end of your in your response.
     """
 
     payload = {
@@ -143,27 +147,30 @@ def twitter_API_call(payload):
 if __name__ == "__main__":
     try:
 
-        user_preferences = "Tech-Savvy, prefers trending technology news and engaging facts."
-        topic = input("Enter a topic you are intrested in:")
+        user_preferences = "Twitter user prefers latest news and engaging facts."
+        # topic = input("Enter a topic you are intrested in:")
+
+        # List of trending topics in India
+        trending_topics_india = []
+
+        # Assign a random value to the variable 'topic'
+        topic = random.choice(trending_topics_india)
+
+    # Print the randomly selected topic
+        print(f"The randomly selected topic is: {topic}")
 
         print("Generating content for user preferences: ", user_preferences)
         print("Generating content using Ollama....")
 
         twitter_content = fetch_twitter_content(user_preferences, topic)
         #print(twitter_content)
-
         # Save the generated content to a .txt file
-        filename = f"{topic.replace(' ', '_')}_twitter_posts.txt"
-        save_to_txt_file(filename, twitter_content)
-
-        parsed_tweets = parse_tweet_file(filename)
-        print(parsed_tweets)
-        for key, value in parsed_tweets.items():
-            #print(f"{key} {value}")
-            tweet_payload = {"text": value}
+        filename = f"./text_files/{topic.replace(' ', '_')}_twitter_posts.txt"
+        #save_to_txt_file(filename, twitter_content)
+        tweet_payload = {"text": twitter_content}
             #tweeter_API_call
-            print(tweet_payload)
-            twitter_API_call(tweet_payload)
+        print(tweet_payload)
+        twitter_API_call(tweet_payload)
 
         print(f"Twitter content generated successfully! Check the file: {filename}")
     
